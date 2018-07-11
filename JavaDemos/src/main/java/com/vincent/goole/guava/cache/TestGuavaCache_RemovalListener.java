@@ -3,7 +3,7 @@ package com.vincent.goole.guava.cache;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
