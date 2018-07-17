@@ -42,6 +42,7 @@ public class HelloServer {
 		try {
 			acceptor.bind(new InetSocketAddress(PORT));
 			System.out.println("HelloServer started on port " + PORT);
+			System.out.println("使用方法：运行HelloServer 在命令行输入telnet 127.0.0.1 9123");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,7 +70,7 @@ class TimeServerHandler extends IoHandlerAdapter {
 		// 来至客户端ip信息
 		String ip = session.getRemoteAddress().toString();
 		System.out.println("===> Message From " + ip + " : " + str);
-		session.write("Hello,Client " + ip);
+		session.write("vincent Response to " + ip + ": Yes \n");
 		// 接受客户端字符串"quit"关闭当前会话连接
 		if (str.trim().equalsIgnoreCase("quit")) {
 			session.close(true);
@@ -95,7 +96,7 @@ class TimeServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionIdle(IoSession session, IdleStatus status) throws Exception {
-		// System.out.println("IDLE "+session.getIdleCount(status));
+		System.out.println("IDLE " + session.getIdleCount(status));
 	}
 
 }
