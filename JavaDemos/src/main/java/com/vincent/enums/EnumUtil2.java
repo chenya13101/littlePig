@@ -15,6 +15,10 @@ public class EnumUtil2 {
 	 * 改进后的方法，不需要初始化一大堆的map.
 	 */
 	public static <T extends EnumCommonInterface> T getEnumObject(Object key, Class<T> clazz) {
+		if (!clazz.isEnum()) {
+			throw new IllegalArgumentException("非枚举类型");
+		}
+
 		Object mapValue = enumMap.get(clazz);
 		if (mapValue == null) {
 			try {
