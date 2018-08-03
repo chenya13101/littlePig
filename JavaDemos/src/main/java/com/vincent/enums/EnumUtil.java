@@ -14,4 +14,5 @@ public class EnumUtil {
 		Map<Object, EnumCommonInterface> map = Constant.ENUM_MAP.get(clazz);
 		return (T) map.get(value);
 	}
+
 }
