@@ -25,12 +25,12 @@ public class Constant {
 	/**
 	 * 存放单个枚举对象 map常量定义
 	 */
-	private static Map<Object, EnumMessage> SINGLE_ENUM_MAP = null;
+	private static Map<Object, EnumCommonInterface> SINGLE_ENUM_MAP = null;
 
 	/**
 	 * 所有枚举对象的 map
 	 */
-	public static final Map<Class, Map<Object, EnumMessage>> ENUM_MAP = initialEnumMap(true);
+	public static final Map<Class, Map<Object, EnumCommonInterface>> ENUM_MAP = initialEnumMap(true);
 
 	private static List<String> initPackagePathList() {
 		List<String> list = new ArrayList<>();
@@ -49,8 +49,8 @@ public class Constant {
 	 * @param isFouceCheck
 	 *            是否强制校验枚举是否实现了EnumMessage接口,若为false则没有实现接口的枚举类也会被加载
 	 */
-	private static Map<Class, Map<Object, EnumMessage>> initialEnumMap(boolean isFouceCheck) {
-		Map<Class, Map<Object, EnumMessage>> ENUM_MAP = new HashMap<>();
+	private static Map<Class, Map<Object, EnumCommonInterface>> initialEnumMap(boolean isFouceCheck) {
+		Map<Class, Map<Object, EnumCommonInterface>> ENUM_MAP = new HashMap<>();
 		try {
 			for (String classname : ENUM_OBJECT_PATH) {
 				Class<?> cls = null;
@@ -84,9 +84,9 @@ public class Constant {
 	 */
 	private static void initialSingleEnumMap(Class<?> cls) throws Exception {
 		Method method = cls.getMethod("values");
-		EnumMessage inter[] = (EnumMessage[]) method.invoke(null, null);
-		for (EnumMessage enumMessage : inter) {
-			SINGLE_ENUM_MAP.put(enumMessage.getValue(), enumMessage);
+		EnumCommonInterface inter[] = (EnumCommonInterface[]) method.invoke(null, null);
+		for (EnumCommonInterface enumMessage : inter) {
+			SINGLE_ENUM_MAP.put(enumMessage.getKey(), enumMessage);
 		}
 	}
 

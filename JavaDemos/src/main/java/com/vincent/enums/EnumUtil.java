@@ -10,8 +10,8 @@ public class EnumUtil {
 	 * @param clazz
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends EnumMessage> T getEnumObject(Object value, Class<T> clazz) {
-		Map<Object, EnumMessage> map = Constant.ENUM_MAP.get(clazz);
+	public static <T extends EnumCommonInterface> T getEnumObject(Object value, Class<T> clazz) {
+		Map<Object, EnumCommonInterface> map = Constant.ENUM_MAP.get(clazz);
 		return (T) map.get(value);
 	}
 }

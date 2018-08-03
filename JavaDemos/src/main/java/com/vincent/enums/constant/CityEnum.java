@@ -1,8 +1,8 @@
 package com.vincent.enums.constant;
 
-import com.vincent.enums.EnumMessage;
+import com.vincent.enums.EnumCommonInterface;
 
-public enum CityEnum implements EnumMessage {
+public enum CityEnum implements EnumCommonInterface {
 	WAIT_COMMIT("深圳", 1),
 	WAIT_AUDIT("广州", 2);
 
@@ -23,7 +23,7 @@ public enum CityEnum implements EnumMessage {
 	}
 
 	@Override
-	public Object getValue() {
+	public Object getKey() {
 		return name;
 	}
 
