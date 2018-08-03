@@ -1,6 +1,5 @@
 package com.vincent.enums;
 
-import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
@@ -19,7 +18,7 @@ public class EnumUtil2 {
 		Object mapValue = enumMap.get(clazz);
 		if (mapValue == null) {
 			try {
-				putEnumsIntoMap(clazz);
+				enumMap.put(clazz, clazz.getEnumConstants());
 				mapValue = enumMap.get(clazz);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -31,15 +30,6 @@ public class EnumUtil2 {
 		T[] enumArray = (T[]) mapValue;
 		Optional<T> optional = Arrays.stream(enumArray).filter(enumKey -> key.equals(enumKey.getKey())).findAny();
 		return optional.isPresent() ? optional.get() : null;
-	}
-
-	private static <T extends EnumCommonInterface> void putEnumsIntoMap(Class<T> clazz) throws Exception {
-		Method method = clazz.getMethod("values");
-		Object obj = method.invoke(clazz);
-
-		@SuppressWarnings("unchecked")
-		T[] enumArray = (T[]) obj;
-		enumMap.put(clazz, enumArray);
 	}
 
 	public static void main(String[] args) {
