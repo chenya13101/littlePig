@@ -84,13 +84,11 @@ class TimeServerHandler extends IoHandlerAdapter {
 
 	@Override
 	public void sessionClosed(IoSession session) throws Exception {
-		// TODO Auto-generated method stub
 		System.out.println("session closed from " + session.getRemoteAddress().toString());
 	} // 有新连接时触发
 
 	@Override
 	public void sessionOpened(IoSession session) throws Exception {
-		// TODO Auto-generated method stub
 		System.out.println("session open for " + session.getRemoteAddress());
 	}
 
