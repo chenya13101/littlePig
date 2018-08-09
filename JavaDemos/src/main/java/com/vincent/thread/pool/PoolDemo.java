@@ -29,6 +29,17 @@ public class PoolDemo {
 				// executor.getCompletedTaskCount());
 			}
 		};
+
+		// RejectedExecutionHandler rejectHandler1 = new
+		// ThreadPoolExecutor.AbortPolicy();//
+		// 直接抛出java.util.concurrent.RejectedExecutionException
+
+		// RejectedExecutionHandler rejectHandler2 = new
+		// ThreadPoolExecutor.CallerRunsPolicy();
+		// RejectedExecutionHandler rejectHandler3 = new
+		// ThreadPoolExecutor.DiscardOldestPolicy();
+		// RejectedExecutionHandler rejectHandler4 = new
+		// ThreadPoolExecutor.DiscardPolicy();
 		// 自定义线程池
 		ThreadPoolExecutor pool = new ThreadPoolExecutor(coreThreadSize, maxThreadSize, keepAliveTime, TimeUnit.SECONDS,
 				new ArrayBlockingQueue<>(bolckQueueSize), new DefaultThreadFactory(), rejectHandler);
@@ -45,9 +56,10 @@ public class PoolDemo {
 			});
 		}
 
-		System.out.println("现有线程池数量1: ActiveCount = " + pool.getActiveCount() + " getPoolSize = " + pool.getPoolSize());
+		System.out
+				.println("A 现有线程池数量: ActiveCount = " + pool.getActiveCount() + " getPoolSize = " + pool.getPoolSize());
 		sleepSecond(11); // 查看线程池参数 keepAliveTime 是否生效了,如果生效，线程执行完两秒钟后getPoolSize()就会变化
-		System.out.println("现有线程池数量2: ActiveCount = " + pool.getActiveCount() + "-- 已完成" + pool.getCompletedTaskCount()
+		System.out.println("B 现有线程池数量: ActiveCount = " + pool.getActiveCount() + "-- 已完成" + pool.getCompletedTaskCount()
 				+ " getPoolSize = " + pool.getPoolSize());// 线程池大小已改编为coreSize,时间与预期的一致
 
 		pool.shutdown();

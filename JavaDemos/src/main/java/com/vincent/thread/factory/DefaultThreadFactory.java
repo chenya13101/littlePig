@@ -17,7 +17,6 @@ public class DefaultThreadFactory implements ThreadFactory {
 
 	@Override
 	public Thread newThread(Runnable r) {
-		System.out.println("newThread -> " + System.currentTimeMillis());
 		Thread t = new Thread(group, r, namePrefix + threadNumber.getAndIncrement(), 0);// 真正创建线程的地方，设置了线程的线程组及线程名
 		if (t.isDaemon())
 			t.setDaemon(false);
