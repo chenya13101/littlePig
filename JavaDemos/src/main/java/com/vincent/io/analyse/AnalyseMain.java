@@ -12,6 +12,8 @@ public class AnalyseMain {
 
 	private static String methodNameStartFlag = "marketingcenter.api.provider.";
 
+	private static String errorFlag = "common.aspect.LogAspect.doAround";
+
 	public static void main(String[] args) {
 		String[] fileNameArray = { "provider.log.2018-08-08.log", "provider.log.2018-08-09.log",
 				"provider.log.2018-08-10.log" };
@@ -25,7 +27,6 @@ public class AnalyseMain {
 	}
 
 	private static void parseFile(String fileName) {
-
 		File file = new File(fileName);
 		BufferedReader reader = null;
 		try {
@@ -33,12 +34,14 @@ public class AnalyseMain {
 			String tempString = null;
 			StringBuilder tmpBuilder = new StringBuilder();
 			while ((tempString = reader.readLine()) != null) { // 一次读入一行，直到读入null为文件结束
-				if (tempString.contains(startFlag)) {
+				if (tempString.contains(startFlag) && !tempString.contains(errorFlag)) {
 					tmpBuilder.append(tempString);
 				}
 				if (tempString.contains(timeStopFlag)) {
 					tmpBuilder.append(tempString);
-					parseContent(tmpBuilder.toString());
+					if (!tempString.contains("ERROR")) {
+						parseContent(tmpBuilder.toString());
+					}
 					tmpBuilder = new StringBuilder();
 				}
 			}
@@ -61,7 +64,6 @@ public class AnalyseMain {
 		String methodName = getBettweenContent(content, methodNameStartFlag, "接口入参");
 		String costTime = getBettweenContent(content, timeStopFlag, "ms");
 		ReduceUtil.add(new Record(logTime, Integer.parseInt(costTime), methodName));
-		// ReduceUtil.add(methodName, Integer.parseInt(costTime));
 	}
 
 	private static String getBettweenContent(String content, String startFlag, String endFlag) {
