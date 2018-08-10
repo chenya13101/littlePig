@@ -63,8 +63,15 @@ public class ReduceBean {
 
 	@Override
 	public String toString() {
-		return new StringBuilder(String.format("%-70s", this.getMethod())).append("- 出现次数=").append(this.getCount())
-				.append("- 最大值=").append(this.getMax()).append("- 最小值=").append(this.getMin()).append("- 平均数=")
-				.append(this.getAverage()).toString();
+		StringBuilder builder;
+		if (this.method.length() > 70)
+			builder = new StringBuilder(method.subSequence(0, 67)).append("...");
+		else {
+			builder = new StringBuilder(String.format("%-70s", this.getMethod()));
+		}
+
+		return builder.append(" -出现次数=").append(String.format("%-4s", this.getCount())).append(" -最大值=")
+				.append(String.format("%-4s", this.getMax())).append(" -最小值=")
+				.append(String.format("%-4s", this.getMin())).append(" -平均数=").append(this.getAverage()).toString();
 	}
 }

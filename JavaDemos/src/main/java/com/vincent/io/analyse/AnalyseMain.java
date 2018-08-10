@@ -13,11 +13,15 @@ public class AnalyseMain {
 	private static String methodNameStartFlag = "marketingcenter.api.provider.";
 
 	public static void main(String[] args) {
-		String fileName = "C:\\Users\\vincent\\Downloads\\vr-marketingcenter-marketingcenter-provider\\provider.log";
-		parseFile(fileName);
+		String[] fileNameArray = { "provider.log.2018-08-08.log", "provider.log.2018-08-09.log",
+				"provider.log.2018-08-10.log" };
+		String directory = "C:\\Users\\vincent\\Downloads\\vr-marketingcenter-marketingcenter-provider\\";
+		for (String fileName : fileNameArray) {
+			parseFile(directory + fileName);
+		}
+
 		ReduceUtil.reduce();
 		ReduceUtil.showResult();
-
 	}
 
 	private static void parseFile(String fileName) {
