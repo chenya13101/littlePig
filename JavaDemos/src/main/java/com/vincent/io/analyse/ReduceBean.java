@@ -4,20 +4,28 @@ public class ReduceBean {
 
 	private String method;
 
-	private int count;
+	private long count;
 
 	private double average;
 
-	private int max;
+	private Record max;
 
-	private int min;
+	private Record min;
 
-	public ReduceBean(String method, int count, double average, int max, int min) {
+	public ReduceBean(String method, long count, double average, Record max, Record min) {
 		super();
 		this.method = method;
 		this.count = count;
 		this.average = average;
 		this.max = max;
+		this.min = min;
+	}
+
+	public void setMax(Record max) {
+		this.max = max;
+	}
+
+	public void setMin(Record min) {
 		this.min = min;
 	}
 
@@ -29,11 +37,11 @@ public class ReduceBean {
 		this.method = method;
 	}
 
-	public int getCount() {
+	public long getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(long count) {
 		this.count = count;
 	}
 
@@ -45,20 +53,12 @@ public class ReduceBean {
 		this.average = average;
 	}
 
-	public int getMax() {
+	public Record getMax() {
 		return max;
 	}
 
-	public void setMax(int max) {
-		this.max = max;
-	}
-
-	public int getMin() {
+	public Record getMin() {
 		return min;
-	}
-
-	public void setMin(int min) {
-		this.min = min;
 	}
 
 	@Override
@@ -70,8 +70,9 @@ public class ReduceBean {
 			builder = new StringBuilder(String.format("%-70s", this.getMethod()));
 		}
 
-		return builder.append(" -出现次数=").append(String.format("%-4s", this.getCount())).append(" -最大值=")
-				.append(String.format("%-4s", this.getMax())).append(" -最小值=")
-				.append(String.format("%-4s", this.getMin())).append(" -平均数=").append(this.getAverage()).toString();
+		return builder.append(" -出现次数=").append(String.format("%-4s", this.getCount())).append(" -平均数=")
+				.append(this.getAverage()).append(" -最小值=").append(String.format("%-4s", this.getMin().getCostTime()))
+				.append("\n").append(String.format("%90s", "-最大值=")).append(String.format("%-4s", this.getMax()))
+				.toString();
 	}
 }

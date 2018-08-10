@@ -57,9 +57,11 @@ public class AnalyseMain {
 	}
 
 	private static void parseContent(String content) {
-		String apiName = getBettweenContent(content, methodNameStartFlag, "接口入参");
-		String time = getBettweenContent(content, timeStopFlag, "ms");
-		ReduceUtil.add(apiName, Integer.parseInt(time));
+		String logTime = content.substring(0, 24);
+		String methodName = getBettweenContent(content, methodNameStartFlag, "接口入参");
+		String costTime = getBettweenContent(content, timeStopFlag, "ms");
+		ReduceUtil.add(new Record(logTime, Integer.parseInt(costTime), methodName));
+		// ReduceUtil.add(methodName, Integer.parseInt(costTime));
 	}
 
 	private static String getBettweenContent(String content, String startFlag, String endFlag) {
