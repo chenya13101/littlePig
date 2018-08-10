@@ -25,10 +25,12 @@ public class ReduceUtil {
 				collectingAndThen(maxBy(Comparator.comparing(Record::getCostTime)), Optional::get)));
 		Map<String, Record> minRecordMap = recordList.stream().collect(groupingBy(Record::getMethod,
 				collectingAndThen(minBy(Comparator.comparing(Record::getCostTime)), Optional::get)));
+		// 通过 map(s -> {System.out.println("min");return s;});
+		// 证明了这些循环没有一次完成而是分成了两次遍历集合,效率有待提高
 
 		Map<String, IntSummaryStatistics> staticsMap = recordList.stream().collect(
 				groupingBy(Record::getMethod, mapping(Record::getCostTime, summarizingInt(Integer::intValue))));
-		// TODO 深入了解groupBy, mapping, collectingAndThen
+		// 深入了解groupBy, mapping, collectingAndThen
 		// collectingAndThen(summarizingInt(Record::getCostTime), toList())
 
 		for (String method : methodSet) {
