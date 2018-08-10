@@ -71,8 +71,8 @@ public class ReduceBean {
 		}
 
 		return builder.append(" -出现次数=").append(String.format("%-4s", this.getCount())).append(" -平均数=")
-				.append(this.getAverage()).append(" -最小值=").append(String.format("%-4s", this.getMin().getCostTime()))
-				.append("\n").append(String.format("%90s", "-最大值=")).append(String.format("%-4s", this.getMax()))
-				.toString();
+				.append(String.format("%-4s", new Double(this.getAverage()).intValue())).append(" -最小值=")
+				.append(String.format("%-4s", this.getMin().getCostTime())).append("-最大值=")
+				.append(String.format("%-4s", this.getMax())).toString();
 	}
 }

@@ -41,6 +41,6 @@ public class Record {
 
 	@Override
 	public String toString() {
-		return " logTime=" + this.logTime + ", costTime=" + this.costTime;
+		return this.costTime + ", logTime=" + this.logTime;
 	}
 }
