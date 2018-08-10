@@ -8,7 +8,9 @@ import java.io.IOException;
 public class AnalyseMain {
 	private static String startFlag = "common.aspect.LogAspect";
 
-	private static String stopFlag = "接口耗时";
+	private static String timeStopFlag = "接口耗时：";
+
+	private static String methodNameStartFlag = "marketingcenter.api.provider.";
 
 	public static void main(String[] args) {
 		String fileName = "C:\\Users\\vincent\\Downloads\\vr-marketingcenter-marketingcenter-provider\\provider.log";
@@ -23,16 +25,14 @@ public class AnalyseMain {
 		File file = new File(fileName);
 		BufferedReader reader = null;
 		try {
-			// System.out.println("以行为单位读取文件内容，一次读一整行：");
 			reader = new BufferedReader(new FileReader(file));
 			String tempString = null;
 			StringBuilder tmpBuilder = new StringBuilder();
 			while ((tempString = reader.readLine()) != null) { // 一次读入一行，直到读入null为文件结束
-				// System.out.println(tempString);
 				if (tempString.contains(startFlag)) {
 					tmpBuilder.append(tempString);
 				}
-				if (tempString.contains(stopFlag)) {
+				if (tempString.contains(timeStopFlag)) {
 					tmpBuilder.append(tempString);
 					parseContent(tmpBuilder.toString());
 					tmpBuilder = new StringBuilder();
@@ -53,8 +53,8 @@ public class AnalyseMain {
 	}
 
 	private static void parseContent(String content) {
-		String apiName = getBettweenContent(content, "marketingcenter.api.provider.", "接口入参");
-		String time = getBettweenContent(content, "接口耗时：", "ms");
+		String apiName = getBettweenContent(content, methodNameStartFlag, "接口入参");
+		String time = getBettweenContent(content, timeStopFlag, "ms");
 		ReduceUtil.add(apiName, Integer.parseInt(time));
 	}
 
