@@ -1,6 +1,9 @@
 package com.vincent.io.analyse;
 
-public class ReduceBean {
+import java.io.Serializable;
+
+public class ReduceBean implements Serializable {
+	private static final long serialVersionUID = 2283702380920651944L;
 
 	private String method;
 

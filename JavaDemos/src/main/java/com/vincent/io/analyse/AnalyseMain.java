@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class AnalyseMain {
 	private static String startFlag = "common.aspect.LogAspect";
@@ -24,6 +26,17 @@ public class AnalyseMain {
 
 		ReduceUtil.reduce();
 		ReduceUtil.showResult();
+
+		serialize(fileNameArray);
+	}
+
+	private static void serialize(String[] fileNameArray) {
+		String saveDirectory = "C:\\Users\\vincent\\Documents\\analyse_log\\";
+		String prefix = "provider.log.2018-";
+		String saveFileName = Arrays.stream(fileNameArray).map(name -> {
+			return name.substring(prefix.length(), prefix.length() + 5);
+		}).collect(Collectors.joining("_"));
+		ReduceUtil.saveToFile(saveDirectory + saveFileName + ".analyse");
 	}
 
 	private static void parseFile(String fileName) {

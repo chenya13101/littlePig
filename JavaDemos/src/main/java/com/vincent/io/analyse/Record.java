@@ -1,6 +1,10 @@
 package com.vincent.io.analyse;
 
-public class Record {
+import java.io.Serializable;
+
+public class Record implements Serializable {
+
+	private static final long serialVersionUID = 5063068880716663513L;
 
 	private String logTime;
 

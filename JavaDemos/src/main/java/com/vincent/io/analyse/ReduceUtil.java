@@ -9,6 +9,12 @@ import java.util.Optional;
 import java.util.Set;
 import static java.util.stream.Collectors.*;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class ReduceUtil {
 
 	private static List<Record> recordList = new ArrayList<>();
@@ -45,4 +51,15 @@ public class ReduceUtil {
 		reduceBeanList.stream().sorted(Comparator.comparingDouble(ReduceBean::getAverage)).forEach(System.out::println);
 	}
 
+	public static void saveToFile(String saveDirectory) {
+		ObjectOutputStream oos;
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(new File(saveDirectory)));
+			oos.writeObject(reduceBeanList);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
