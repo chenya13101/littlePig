@@ -16,22 +16,23 @@ public class AnalyseMain {
 
 	private static String errorFlag = "common.aspect.LogAspect.doAround";
 
+	private static final String env = "test";
+
 	public static void main(String[] args) {
-		String[] fileNameArray = {// "provider.log.2018-08-08.log", "provider.log.2018-08-09.log",
-				"provider.log.2018-08-13.log" };
-		String directory = "C:\\Users\\vincent\\Downloads\\vr-marketingcenter-marketingcenter-provider\\";
+		String[] fileNameArray = { // "provider.log.2018-08-08.log", "provider.log.2018-08-09.log",
+				"provider.log.2018-08-14.log" };
+		String directory = "C:\\Users\\vincent\\Downloads\\vr-marketingcenter-marketingcenter-provider\\" + env + "\\";
 		for (String fileName : fileNameArray) {
 			parseFile(directory + fileName);
 		}
 
 		ReduceUtil.reduce();
 		ReduceUtil.showResult();
-
 		serialize(fileNameArray);
 	}
 
 	private static void serialize(String[] fileNameArray) {
-		String saveDirectory = "C:\\Users\\vincent\\Documents\\analyse_log\\";
+		String saveDirectory = "C:\\Users\\vincent\\Documents\\analyse_log\\" + env + "\\";
 		String prefix = "provider.log.2018-";
 		String saveFileName = Arrays.stream(fileNameArray).map(name -> {
 			return name.substring(prefix.length(), prefix.length() + 5);
