@@ -52,7 +52,7 @@ public class ReduceUtil {
 	}
 
 	public static void saveToFile(String saveDirectory) {
-		ObjectOutputStream oos;
+		ObjectOutputStream oos = null;
 		try {
 			oos = new ObjectOutputStream(new FileOutputStream(new File(saveDirectory)));
 			oos.writeObject(reduceBeanList);
@@ -60,6 +60,12 @@ public class ReduceUtil {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
