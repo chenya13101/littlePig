@@ -1,7 +1,7 @@
 package com.vincent.gson;
 
 public class Point {
-	private int x;
+	protected int x;
 	private int y;
 
 	public Point(int x, int y) {
