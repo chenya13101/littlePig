@@ -12,6 +12,7 @@ public class AndDemo {
 		int i = 5; // 0101
 		int j = 12; // 1100
 		int d = i & j;
+		//如果是将某个对象放在数组的哪个index上，可以使用 %
 		assertEquals(d, 4);
 	}
 
