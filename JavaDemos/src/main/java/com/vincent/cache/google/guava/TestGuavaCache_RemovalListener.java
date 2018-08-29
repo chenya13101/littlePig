@@ -1,4 +1,4 @@
-package com.vincent.goole.guava.cache;
+package com.vincent.cache.google.guava;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;

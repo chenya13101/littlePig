@@ -10,12 +10,12 @@ import java.util.Optional;
 
 public class AnalysePerformance {
 
-	private static final String env = "test";
+	private static final String env = "pre";
 
 	public static void main(String[] args) {
 		String saveDirectory = "C:\\Users\\vincent\\Documents\\analyse_log\\" + env + "\\";
-		String file1 = "08-15.analyse";
-		String file2 = "08-13.analyse";
+		String file1 = "08-14.analyse";
+		String file2 = "08-17.analyse";
 		List<ReduceBean> reduceList1 = getReduceBeanList(saveDirectory + file1);
 		List<ReduceBean> reduceList2 = getReduceBeanList(saveDirectory + file2);
 		showUpCompareInfo(reduceList1, reduceList2);

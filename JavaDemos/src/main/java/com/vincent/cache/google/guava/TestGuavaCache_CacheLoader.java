@@ -1,4 +1,4 @@
-package com.vincent.goole.guava.cache;
+package com.vincent.cache.google.guava;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +13,8 @@ import com.google.common.cache.LoadingCache;
 
 /**
  * https://www.cnblogs.com/always-online/p/4062856.html#undefined
+ * 
+ * 缓存对象指定长度时间,设置更新读写策略
  * 
  * @author WenSen
  * @date 2018年7月11日 上午10:53:07

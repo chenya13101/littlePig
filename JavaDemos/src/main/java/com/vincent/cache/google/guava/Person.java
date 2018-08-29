@@ -1,4 +1,4 @@
-package com.vincent.goole.guava.cache;
+package com.vincent.cache.google.guava;
 
 class Person {
 	private String id;
