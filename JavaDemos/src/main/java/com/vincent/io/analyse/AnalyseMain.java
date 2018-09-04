@@ -16,11 +16,11 @@ public class AnalyseMain {
 
 	private static String errorFlag = "common.aspect.LogAspect.doAround";
 
-	private static final String env = "pre";
+	private static final String env = "test";
 
 	public static void main(String[] args) {
-		String[] fileNameArray = { // "provider.log.2018-08-08.log", "provider.log.2018-08-09.log",
-				"provider.log.2018-08-17.log" };
+		String[] fileNameArray = { // "provider.log.2018-09-03_1.log", // "provider.log.2018-08-09.log",
+				"provider.log.2018-09-03.log" };
 		String directory = "C:\\Users\\vincent\\Downloads\\vr-marketingcenter-marketingcenter-provider\\" + env + "\\";
 		for (String fileName : fileNameArray) {
 			parseFile(directory + fileName);
