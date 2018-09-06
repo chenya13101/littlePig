@@ -31,4 +31,9 @@ class Author {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return id + " " + name;
+	}
+
 }
