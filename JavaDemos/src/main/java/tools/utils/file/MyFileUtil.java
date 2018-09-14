@@ -21,13 +21,35 @@ public class MyFileUtil {
 	 * @param destDir
 	 *            "C:\\\\Users\\\\vincent\\\\Desktop\\\\needChekFiles";
 	 */
-	public static void copy(String destPathPrefix, String pathFile, String destDir) {
+	public static void copyToOneDirectory(String destPathPrefix, String pathFile, String destDir) {
 		try {
 			String filesInput = FileUtils.readFileToString(new File(pathFile), "utf-8");
 			String[] files = filesInput.split("\n");
-			Arrays.stream(files).forEach(tmpFilePath -> {
+			Arrays.stream(files).map(String::trim).forEach(tmpFilePath -> {
 				try {
-					FileUtils.copyFileToDirectory(new File(destPathPrefix + tmpFilePath.trim()), new File(destDir));
+					FileUtils.copyFileToDirectory(new File(destPathPrefix + tmpFilePath), new File(destDir));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void copyToDiffDirectory(String srcDirectory, String pathFileName, String destPathPrefix) {
+		try {
+			String filesInput = FileUtils.readFileToString(new File(pathFileName), "utf-8");
+			String[] files = filesInput.split("\n");
+
+			Arrays.stream(files).map(String::trim).forEach(tmpFilePath -> {
+				try {
+					int tmpIndex = tmpFilePath.lastIndexOf("/");
+					String fileName = tmpFilePath.substring(tmpIndex + 1);
+					String srcPath = srcDirectory + fileName;
+					String targetPath = destPathPrefix + tmpFilePath;
+
+					FileUtils.copyFile(new File(srcPath), new File(targetPath));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
